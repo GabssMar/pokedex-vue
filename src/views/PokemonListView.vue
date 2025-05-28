@@ -15,6 +15,7 @@ export default {
   watch: {
     currentPage(newCurrentPage) {
       this.offset = (newCurrentPage - 1 ) * this.limit
+      this.fetchPokemons();
     }
   },
   mounted() {
@@ -22,7 +23,7 @@ export default {
   },
   methods: {
     fetchPokemons() {
-      const url = `https://pokeapi.co/api/v2/pokemon?limit={this.limit}&offset={this.offset}`
+      const url = `https://pokeapi.co/api/v2/pokemon?limit=${this.limit}&offset=${this.offset}`;
       fetch(url).then(res => res.json())
         .then(data => {
           console.log(data)
